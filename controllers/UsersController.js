@@ -8,8 +8,7 @@ const Bull = require('bull');
 
 // defined two methods 'postNew' and 'getMe'
 class UsersController {
-// create a new user
-    static async postNew(request, response) {
+  static async postNew(request, response) {
     const userQueue = new Bull('userQueue');
 
     const userEmail = request.body.email;
