@@ -1,4 +1,4 @@
-// new user in DB
+// controllers/UsersController.js
 import sha1 from 'sha1';
 import DBClient from '../utils/db';
 import RedisClient from '../utils/redis';
@@ -6,7 +6,6 @@ import RedisClient from '../utils/redis';
 const { ObjectId } = require('mongodb');
 const Bull = require('bull');
 
-// defined two methods 'postNew' and 'getMe'
 class UsersController {
   static async postNew(request, response) {
     const userQueue = new Bull('userQueue');
@@ -30,7 +29,6 @@ class UsersController {
     return response.status(201).send({ id: result.insertedId, email: userEmail });
   }
 
-  // retrieve user
   static async getMe(request, response) {
     const token = request.header('X-Token') || null;
     if (!token) return response.status(401).send({ error: 'Unauthorized' });
